@@ -47,9 +47,7 @@ class PaletteList extends Component {
                     </nav>
                     <div className={classes.palettes}>
                         {palettes.map(palette => (
-                            <p>
                                 <MiniPalette {...palette} handleClick={() => this.goToPalette(palette.id)} />
-                            </p>
                         ))}
                     </div>
                 </div>

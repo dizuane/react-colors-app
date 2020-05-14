@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Palette from './Palette';
 import PaletteList from './PaletteList';
+import SingleColorPalette from './SingleColorPalette';
 import { Route, Switch } from 'react-router-dom';
 import seedPalettes from './seedPalettes';
 import { generatePalette } from './colorHelpers';
@@ -27,7 +28,14 @@ class App extends Component {
         />
         <Route
           exact
-          path="/palette/:paletteId/:colorId" render={() => <h1>SINGLE COLOR PAGE</h1>}
+          path="/palette/:paletteId/:colorId"
+          render={routeProps => (
+            <SingleColorPalette colorId={routeProps.match.params.colorId}
+              palette={generatePalette(
+                this.findPalette(routeProps.match.params.paletteId)
+              )}
+            />
+          )}
         />
       </Switch>
       // <div className="App">
