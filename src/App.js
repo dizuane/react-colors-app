@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { generatePalette } from './colorHelpers';
+import { Route, Switch } from 'react-router-dom';
+
 import Palette from './Palette';
 import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
-import { Route, Switch } from 'react-router-dom';
+
 import seedPalettes from './seedPalettes';
-import { generatePalette } from './colorHelpers';
 
 class App extends Component {
   findPalette(id) {
