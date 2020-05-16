@@ -1,8 +1,25 @@
 import React, { Component } from "react";
+import { withStyles } from "@material-ui/core/styles";
 import Button from '@material-ui/core/Button';
 import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
+const styles = {
+    picker: {
+        width: "100% !important",
+        marginTop: "2rem"
+    },
+    addColor: {
+        width: "100%",
+        padding: "1rem",
+        marginTop: "1rem",
+        fontSize: "2rem"
+    },
+    colorNameInput: {
+        width: "100%",
+        height: "70px"
+    }
+}
 class ColorPickerForm extends Component {
     constructor(props) {
         super(props);
@@ -38,19 +55,24 @@ class ColorPickerForm extends Component {
     }
 
     render() {
-        const { paletteIsFull } = this.props;
+        const { paletteIsFull, classes } = this.props;
         const { currentColor, newColorName } = this.state;
         return (
             <div>
                 <ChromePicker
                     color={currentColor}
                     onChange={this.updateCurrentColor}
+                    className={classes.picker}
                 />
                 <ValidatorForm onSubmit={this.handleSubmit}>
                     <TextValidator
+                        variant="filled"
                         value={newColorName}
                         onChange={this.handleChange}
                         name='newColorName'
+                        className={classes.colorNameInput}
+                        margin='normal'
+                        placeholder='Color Name'
                         validators={[
                             'required',
                             'isColorNameUnique',
@@ -65,6 +87,7 @@ class ColorPickerForm extends Component {
                     <Button
                         variant="contained"
                         color="primary"
+                        className={classes.addColor}
                         style={{ backgroundColor: paletteIsFull ? "grey" : currentColor }}
                         type='submit'
                         disabled={paletteIsFull}
@@ -75,4 +98,4 @@ class ColorPickerForm extends Component {
     }
 }
 
-export default ColorPickerForm
+export default withStyles(styles)(ColorPickerForm);
