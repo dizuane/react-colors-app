@@ -1,3 +1,5 @@
+import sizes from './sizes';
+
 export default {
     Navbar: {
         display: "flex",
@@ -38,6 +40,9 @@ export default {
         },
         "& .rc-slider-track": {
             backgroundColor: "transparent"
+        },
+        [sizes.down("md")]: {
+            width: "150px"
         }
     },
     selectContainer: {
